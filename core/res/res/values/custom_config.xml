@@ -210,4 +210,7 @@
         <item>Build.ID</item>
       -->
     </string-array>
+
+    <!-- Default value for Horizon light color (Blue) -->
+    <integer name="config_AmbientPulseLightColor">0x3980FF</integer>
 </resources>

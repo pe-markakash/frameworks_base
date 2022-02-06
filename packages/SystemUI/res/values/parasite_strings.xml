@@ -30,4 +30,7 @@
 
     <!-- Name of the roaming status bar icon. -->
     <string name="status_bar_roaming">Roaming indicator</string>
+
+    <!-- Google lens screenshot notification -->
+    <string name="lens">Lens</string>
 </resources>

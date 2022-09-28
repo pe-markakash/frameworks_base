@@ -33,6 +33,8 @@ import android.widget.Toast;
 import com.android.systemui.R;
 import com.android.systemui.qs.dagger.QSScope;
 import com.android.systemui.settings.UserTracker;
+import com.android.systemui.statusbar.connectivity.NetworkController;
+import com.android.systemui.statusbar.connectivity.SignalCallback;
 import com.android.systemui.util.ViewController;
 
 import com.android.settingslib.wifi.WifiStatusTracker;
@@ -49,6 +51,7 @@ public class QSFooterViewController extends ViewController<QSFooterView> impleme
     private final QSPanelController mQsPanelController;
     private final PageIndicator mPageIndicator;
     private final WifiStatusTracker mWifiTracker;
+    private final NetworkController mNetworkController;
     private final Context mContext;
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -59,14 +62,23 @@ public class QSFooterViewController extends ViewController<QSFooterView> impleme
         }
     };
 
+    private final SignalCallback mSignalCallback = new SignalCallback() {
+        @Override
+        public void setNoSims(boolean show, boolean simDetected) {
+            mView.setNoSims(show);
+         }
+    };
+
     @Inject
     QSFooterViewController(QSFooterView view,
             UserTracker userTracker,
             QSPanelController qsPanelController,
+            NetworkController networkController,
             Context context) {
         super(view);
         mUserTracker = userTracker;
         mQsPanelController = qsPanelController;
+        mNetworkController = networkController;
         mContext = context;
         mPageIndicator = mView.findViewById(R.id.footer_page_indicator);
         mWifiTracker = new WifiStatusTracker(context, context.getSystemService(WifiManager.class),
@@ -86,11 +98,13 @@ public class QSFooterViewController extends ViewController<QSFooterView> impleme
         mWifiTracker.fetchInitialState();
         mWifiTracker.setListening(true);
         onWifiStatusUpdated();
+        mNetworkController.addCallback(mSignalCallback);
     }
 
     @Override
     protected void onViewDetached() {
         mContext.unregisterReceiver(mReceiver);
+        mNetworkController.removeCallback(mSignalCallback);
     }
 
     @Override

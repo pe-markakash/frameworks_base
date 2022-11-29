@@ -6084,6 +6084,12 @@ public final class Settings {
         public static final String BRIGHTNESS_SLIDER_HAPTIC_ENABLED = "brightness_slider_haptic_enabled";
 
         /**
+         * Give haptic feedback on volume slider changes.
+         * @hide
+         */ 
+        public static final String VOLUME_SLIDER_HAPTIC_ENABLED = "volume_slider_haptic_enabled";
+
+        /**
          * @hide
          */
         public static final String QS_TRANSPARENCY = "qs_transparency";

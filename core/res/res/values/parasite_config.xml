@@ -18,4 +18,7 @@
         <item>com.shannon.imsservice</item>
         <item>org.pixelexperience.faceunlock</item>
     </string-array>
+
+    <!-- Device model (Build.MODEL) to spoof for netflix, if not empty -->
+    <string name="config_netflixSpoofModel" translatable="false"></string>
 </resources>

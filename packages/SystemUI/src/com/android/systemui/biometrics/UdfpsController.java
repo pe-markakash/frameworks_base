@@ -42,6 +42,7 @@ import android.os.Handler;
 import android.os.PowerManager;
 import android.os.Process;
 import android.os.Trace;
+import android.os.UserHandle;
 import android.os.VibrationAttributes;
 import android.os.VibrationEffect;
 import android.util.BoostFramework;
@@ -62,6 +63,7 @@ import com.android.internal.util.LatencyTracker;
 import com.android.keyguard.FaceAuthApiRequestReason;
 import com.android.keyguard.KeyguardUpdateMonitor;
 import com.android.systemui.Dumpable;
+import com.android.systemui.R;
 import com.android.systemui.animation.ActivityLaunchAnimator;
 import com.android.systemui.biometrics.dagger.BiometricsBackground;
 import com.android.systemui.biometrics.udfps.InteractionEvent;
@@ -122,6 +124,8 @@ import kotlin.Unit;
 public class UdfpsController implements DozeReceiver, Dumpable {
     private static final String TAG = "UdfpsController";
     private static final long AOD_SEND_FINGER_UP_DELAY_MILLIS = 1000;
+
+    private static final String PULSE_ACTION = "com.android.systemui.doze.pulse";
 
     // Minimum required delay between consecutive touch logs in milliseconds.
     private static final long MIN_TOUCH_LOG_INTERVAL = 50;
@@ -301,8 +305,8 @@ public class UdfpsController implements DozeReceiver, Dumpable {
                     return;
                 }
                 if (vendorCode == mUdfpsVendorCode) {
-                    mPowerManager.wakeUp(mSystemClock.uptimeMillis(),
-                            PowerManager.WAKE_REASON_GESTURE, TAG);
+                    mContext.sendBroadcastAsUser(new Intent(PULSE_ACTION),
+                                    new UserHandle(UserHandle.USER_CURRENT));
                     onAodInterrupt(0, 0, 0, 0);
                 }
             }

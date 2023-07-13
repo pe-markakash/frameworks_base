@@ -100,6 +100,7 @@ public class PixelPropsUtils {
     };
 
     private static final String[] packagesToKeep = {
+            "com.google.android.apps.miphone.aiai.AiaiApplication",
             "com.google.android.euicc",
             "com.google.ar.core",
             "com.google.android.youtube",
@@ -187,7 +188,6 @@ public class PixelPropsUtils {
 
     public static void setProps(String packageName) {
         propsToChangeGeneric.forEach((k, v) -> setPropValue(k, v));
-
         if (packageName == null || packageName.isEmpty()) {
             return;
         }

@@ -11831,14 +11831,6 @@ public final class Settings {
         public static final String SPOOF_STORAGE_ENCRYPTION_STATUS = "spoof_storage_encryption_status";
 
         /**
-         * Enable udfps detection even when screen is off
-         * Default value is 0
-         * @hide
-         */
-        @Readable
-        public static final String SCREEN_OFF_UDFPS_ENABLED = "screen_off_udfps_enabled";
-
-        /**
          * Whether key swap is enabled on supported hardware
          * @hide
          */

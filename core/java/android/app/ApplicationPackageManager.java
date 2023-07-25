@@ -869,9 +869,6 @@ public class ApplicationPackageManager extends PackageManager {
     private static final String[] featuresNexus = {
             "com.google.android.apps.photos.NEXUS_PRELOAD",
             "com.google.android.apps.photos.nexus_preload",
-            "com.google.android.feature.PIXEL_EXPERIENCE",
-            "com.google.android.feature.GOOGLE_BUILD",
-            "com.google.android.feature.GOOGLE_EXPERIENCE"
     };
 
     private static final String[] featuresAndroid = {

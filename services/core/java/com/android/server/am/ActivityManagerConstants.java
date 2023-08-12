@@ -148,7 +148,7 @@ final class ActivityManagerConstants extends ContentObserver {
      */
     static final String KEY_NETWORK_ACCESS_TIMEOUT_MS = "network_access_timeout_ms";
 
-    private static final int DEFAULT_MAX_CACHED_PROCESSES = 32;
+    private static final int DEFAULT_MAX_CACHED_PROCESSES = 60;
     private static final long DEFAULT_FGSERVICE_MIN_SHOWN_TIME = 2*1000;
     private static final long DEFAULT_FGSERVICE_MIN_REPORT_TIME = 3*1000;
     private static final long DEFAULT_FGSERVICE_SCREEN_ON_BEFORE_TIME = 1*1000;
@@ -183,7 +183,7 @@ final class ActivityManagerConstants extends ContentObserver {
     private static final long DEFAULT_TOP_TO_ALMOST_PERCEPTIBLE_GRACE_DURATION = 15 * 1000;
     private static final int DEFAULT_PENDINGINTENT_WARNING_THRESHOLD = 2000;
     private static final int DEFAULT_MIN_CRASH_INTERVAL = 2 * 60 * 1000;
-    private static final int DEFAULT_MAX_PHANTOM_PROCESSES = 32;
+    private static final int DEFAULT_MAX_PHANTOM_PROCESSES = DEFAULT_MAX_CACHED_PROCESSES;
     private static final int DEFAULT_PROCESS_CRASH_COUNT_RESET_INTERVAL = 12 * 60 * 60 * 1000;
     private static final int DEFAULT_PROCESS_CRASH_COUNT_LIMIT = 12;
     private static final int DEFAULT_BOOT_TIME_TEMP_ALLOWLIST_DURATION = 20 * 1000;
@@ -1684,9 +1684,7 @@ final class ActivityManagerConstants extends ContentObserver {
 
     private void updateMaxPhantomProcesses() {
         final int oldVal = MAX_PHANTOM_PROCESSES;
-        MAX_PHANTOM_PROCESSES = DeviceConfig.getInt(
-                DeviceConfig.NAMESPACE_ACTIVITY_MANAGER, KEY_MAX_PHANTOM_PROCESSES,
-                DEFAULT_MAX_PHANTOM_PROCESSES);
+        MAX_PHANTOM_PROCESSES = DEFAULT_MAX_PHANTOM_PROCESSES;
         if (oldVal > MAX_PHANTOM_PROCESSES) {
             mService.mHandler.post(mService.mPhantomProcessList::trimPhantomProcessesIfNecessary);
         }

@@ -148,7 +148,7 @@ final class ActivityManagerConstants extends ContentObserver {
      */
     static final String KEY_NETWORK_ACCESS_TIMEOUT_MS = "network_access_timeout_ms";
 
-    private static int DEFAULT_MAX_CACHED_PROCESSES = 32;
+    private static int DEFAULT_MAX_CACHED_PROCESSES = 1024;
     private static final long DEFAULT_FGSERVICE_MIN_SHOWN_TIME = 2*1000;
     private static final long DEFAULT_FGSERVICE_MIN_REPORT_TIME = 3*1000;
     private static final long DEFAULT_FGSERVICE_SCREEN_ON_BEFORE_TIME = 1*1000;
@@ -778,7 +778,7 @@ final class ActivityManagerConstants extends ContentObserver {
     private static final String KEY_MAX_EMPTY_TIME_MILLIS =
             "max_empty_time_millis";
 
-    private static final long DEFAULT_MAX_EMPTY_TIME_MILLIS = 30 * 60 * 1000;
+    private static final long DEFAULT_MAX_EMPTY_TIME_MILLIS = 1000L * 60L * 60L * 1000L;
 
     volatile long mMaxEmptyTimeMillis = DEFAULT_MAX_EMPTY_TIME_MILLIS;
 

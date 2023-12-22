@@ -516,7 +516,7 @@ public class EdgeEffect {
             mStartTime = AnimationUtils.currentAnimationTimeMillis();
             if (mHasVibratePermission) {
                 mVibrator.vibrate(VIBRATE_CLICK);
-                }
+            }
         } else if (edgeEffectBehavior == TYPE_GLOW) {
             mState = STATE_ABSORB;
             mVelocity = 0;
@@ -543,7 +543,7 @@ public class EdgeEffect {
             mTargetDisplacement = 0.5f;
             if (mHasVibratePermission) {
                 mVibrator.vibrate(VIBRATE_CLICK);
-                }
+            }
         } else {
             finish();
         }

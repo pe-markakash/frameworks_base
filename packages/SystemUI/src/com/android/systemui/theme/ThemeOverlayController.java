@@ -470,7 +470,7 @@ public class ThemeOverlayController implements CoreStartable, Dumpable {
             reevaluateSystemTheme(true /* forceReload */);
         });
         mSecureSettings.registerContentObserverForUser(
-                Settings.Secure.getUriFor(Settings.Secure.SYSTEM_BLACK_THEME),
+                Settings.Secure.getUriFor(Settings.Secure.BERRY_BLACK_THEME),
                 false,
                 new ContentObserver(mBgHandler) {
                     @Override
@@ -812,7 +812,7 @@ public class ThemeOverlayController implements CoreStartable, Dumpable {
 
         boolean nightMode = (mContext.getResources().getConfiguration().uiMode
                 & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
-        boolean isBlackTheme = mSecureSettings.getInt(Settings.Secure.SYSTEM_BLACK_THEME, 0) == 1
+        boolean isBlackTheme = mSecureSettings.getInt(Settings.Secure.BERRY_BLACK_THEME, 0) == 1
                                 && nightMode;
 
         mThemeManager.setIsBlackTheme(isBlackTheme);
